@@ -1,0 +1,9 @@
+{
+  "n_negative": 352,
+  "liquidity": 56,
+  "matching": 42,
+  "unclear": 254,
+  "liquidity_pct": 16,
+  "matching_pct": 12,
+  "unclear_pct": 72
+}

@@ -6,18 +6,21 @@ job application. Real public data → Claude classification → dashboard → st
 
 **Not affiliated with Pronto.** Uses only public app-store reviews.
 
-## The headline
+## The headline (v2)
 - **4,464** public reviews mined (Pronto 2,617 + Urban Company 1,847).
-- **66%** of Pronto's negative reviews are about no-shows/cancellations — vs **11%** for Urban Company.
-- **55%** of those hit at **activation** (the first booking). The product is loved when the pro shows up (**85% 5★**).
-- → The growth lever is **first-booking reliability + humane recovery**, not acquisition.
+- **66%** of Pronto's negative reviews are about no-shows/cancellations — vs **11%** for Urban Company. Same market, opposite failure mode.
+- Of the harshest reviews, **~72% give no attributable root cause** — the case for event instrumentation over review-mining.
+- → The growth ceiling is **supply liquidity** (no-shows are the symptom). The cure is a **subscription flywheel** that turns demand into a forecast you can pre-staff. The product is loved when the pro shows up (**85% 5★**).
+
+> **v2 note:** v1 framed this as "first-booking reliability." After pressure-testing the thesis against five marketplace operators' frameworks (Lauzier, Hockenmaier, Tavel, Widjaja, Verna), it was rebuilt: reliability is a *symptom*; the disease is *supply liquidity*. v2 also adds a "what this data can't see / what I'd instrument day one" layer. See `pronto-growth-teardown-v2.md`.
 
 ## Deliverables
 | File | What it is |
 |---|---|
-| `pronto-growth-teardown.md` / `.pdf` | The strategy doc — thesis, Delta-4 read, 30/60/90 experiments. **Start here.** |
+| `pronto-growth-teardown-v2.md` / `.pdf` | **The current strategy doc** — liquidity thesis, subscription flywheel, day-1→90 plan. **Start here.** |
 | `dashboard.html` | Self-contained interactive dashboard (open in any browser). |
-| `outreach-kit.md` | Cold DM, public post, and Loom script to get it in front of Pronto. |
+| `pronto-growth-teardown.md` | v1 (kept for the v1→v2 delta). |
+| `outreach-kit.md` | Cold DM, public post, and Loom script (kept private / git-ignored). |
 
 ## The pipeline
 ```
@@ -25,6 +28,7 @@ scrape.py            # pull public reviews (Google Play + Apple RSS) -> data/rev
 analyze.py           # Claude classification at scale (needs ANTHROPIC_API_KEY)
 sample.py            # build a stratified sample for review
 classify_sample.py   # in-context (hand-judged) classifications -> data/reviews_classified.json
+analyze_liquidity.py # root-cause split: liquidity vs matching vs unclear
 build_dashboard.py   # render dashboard.html from the data
 ```
 

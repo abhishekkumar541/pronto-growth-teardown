@@ -67,14 +67,19 @@ def main():
         bar = (f"<div class='brandbar'><img src='data:image/png;base64,{logo64}'/>"
                f"<span>Growth Teardown</span></div>")
     html = f"<!DOCTYPE html><html><head><meta charset='utf-8'><style>{CSS}</style></head><body>{bar}{body}</body></html>"
+    out = out.resolve()
     with tempfile.NamedTemporaryFile("w", suffix=".html", delete=False) as f:
         f.write(html)
         html_path = f.name
+    profile = tempfile.mkdtemp(prefix="chrome-pdf-")
     subprocess.run(
-        [CHROME, "--headless", "--disable-gpu", "--no-pdf-header-footer",
+        [CHROME, "--headless=new", "--disable-gpu", "--no-first-run",
+         f"--user-data-dir={profile}", "--no-pdf-header-footer",
          f"--print-to-pdf={out}", f"file://{html_path}"],
         check=True, capture_output=True,
     )
+    if not out.exists():
+        raise SystemExit(f"PDF was not written to {out}")
     print(out)
 
 

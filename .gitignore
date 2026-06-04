@@ -12,3 +12,5 @@ data/sample.json
 .vercel
 
 dashboard-v2-preview.png
+_teardown_render.html
+brand/fonts/

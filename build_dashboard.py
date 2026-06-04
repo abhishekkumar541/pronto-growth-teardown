@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the v2 single-file dashboard.html, styled in Pronto's brand
+"""Build the single-file dashboard.html, styled in Pronto's brand
 (green #18A860, near-black headlines, soft green surfaces, Pronto logo + icon).
 Data + brand assets are embedded inline so the file is fully portable."""
 import base64
@@ -162,60 +162,59 @@ ul.feat li{margin:4px 0;break-inside:avoid}
 <body><div class="wrap">
 <div class="topbar">
 <div class="brandrow"><img src="__LOGO__" alt="Pronto"/><div class="div"></div><span class="lbl">Growth Teardown</span></div>
-<span class="pill">v2.0 · Internal-style analysis</span>
+<span class="pill">Independent analysis</span>
 </div>
 <header>
 <h1>The growth ceiling is <span class="g">supply liquidity</span>.</h1>
-<div class="sub">What 4,464 public reviews (Pronto + Urban Company) say about where growth is gated. No-shows are the symptom; liquidity is the disease. Generated __GEN__.</div>
+<div class="sub">What 4,464 public reviews say about the one moment that decides whether Pronto keeps a customer: whether a cleaner is actually at the door, on time.</div>
 </header>
 
 <div class="thesis" id="thesis"></div>
-<div class="delta" id="delta"></div>
 <div class="honesty" id="honesty"></div>
 <div class="kpis" id="kpis"></div>
 
 <div class="grid">
-<div class="card"><h3>Pronto rating distribution</h3><p class="cap">All __PRN__ Pronto reviews with text. Bimodal: love it, or rage-uninstall.</p><canvas id="ratePr"></canvas></div>
-<div class="card"><h3>Root cause — what reviews can (and can't) tell you</h3><p class="cap">Pronto's harshest reviews (1-2★), attributed by language.</p><canvas id="liq"></canvas></div>
+<div class="card"><h3>How Pronto is rated</h3><p class="cap">All __PRN__ Pronto reviews with text. People either love it or uninstall in frustration.</p><canvas id="ratePr"></canvas></div>
+<div class="card"><h3>Root cause: what the reviews can and cannot tell you</h3><p class="cap">Pronto's harshest reviews (one and two star), sorted by what they actually describe.</p><canvas id="liq"></canvas></div>
 </div>
 
-<div class="card full"><h3>Same market, opposite failure modes</h3>
-<p class="cap">Negative-review themes, Pronto vs Urban Company. UC has crossed the liquidity threshold; Pronto hasn't yet.</p>
+<div class="card full"><h3>Same city, opposite problem</h3>
+<p class="cap">What unhappy customers complain about, Pronto beside Urban Company. Urban Company has crossed the supply threshold. Pronto has not yet.</p>
 <canvas id="themeCmp" style="max-height:340px"></canvas></div>
 
 <div class="grid">
-<div class="card"><h3>Reliability share of complaints</h3><p class="cap">% of negative reviews about no-shows / cancellations.</p>
+<div class="card"><h3>How often "nobody came" is the complaint</h3><p class="cap">Share of unhappy reviews about a no-show or cancellation.</p>
 <div class="cmp"><div><div class="big pr" id="relPr"></div><div class="v pr">Pronto</div></div><div style="font-size:22px;color:#cbd5cd">vs</div><div><div class="big uc" id="relUc"></div><div class="v uc">Urban Company</div></div></div>
-<p class="cap" style="margin-top:8px">UC's detractors complain their pro <b>overcharged</b> — meaning a pro reliably showed up. Pronto's complain <b>nobody came.</b></p></div>
-<div class="card"><h3>Voice of the detractor</h3><p class="cap">Representative Pronto 1★ reviews.</p><div id="qRel"></div></div>
+<p class="cap" style="margin-top:8px">Urban Company's unhappy customers say a pro <b>overcharged</b> them, which at least means a pro arrived. Pronto's say <b>nobody came</b>.</p></div>
+<div class="card"><h3>What unhappy customers say</h3><p class="cap">A few representative one-star reviews.</p><div id="qRel"></div></div>
 </div>
 
 <div class="flow" id="flow"></div>
 
-<div class="card full"><h3>The experiments — one primary bet, sequenced</h3>
-<p class="cap">Everything serves liquidity. The flywheel is the strategy; the rest are enablers.</p>
+<div class="card full"><h3>Five moves, in order of leverage</h3>
+<p class="cap">Everything here serves one thing: making sure a pro is actually there. The first move is the engine. The rest protect it.</p>
 <div id="exps"></div></div>
 
-<div class="card full"><h3>Day 1 → 90 operating plan</h3>
-<p class="cap">How I'd sequence this in the role — and the one metric I'd stake it on.</p>
+<div class="card full"><h3>The first ninety days</h3>
+<p class="cap">How I would sequence this, and the one number I would own.</p>
 <div class="plan">
-<div class="phase"><div class="ph">Day 1–14 · Instrument</div><div class="pt">Stop guessing from reviews. Build the <b>requested→assigned→checked-in→completed</b> funnel by pincode×slot, the supply-density heatmap, and first→second-booking cohort retention.</div></div>
-<div class="phase"><div class="ph">Day 15–45 · De-risk the promise</div><div class="pt">Ship <b>E2</b> (density-aware booking) + <b>E5</b> (honest ETA/human) in 1–2 thin pincodes; stand up <b>E3</b> over-provisioning for first bookings there.</div></div>
-<div class="phase"><div class="ph">Day 45–90 · Spin the flywheel</div><div class="pt">Launch <b>E1</b> (same-pro subscription) in the proven pincodes; A/B authorize-on-arrival (<b>E4</b>). Measure: does subscription density lift completion rate?</div></div>
+<div class="phase"><div class="ph">Weeks 1 to 2 · Learn</div><div class="pt">Stop guessing from reviews. Build the booking-to-arrival funnel by area and hour, find where supply runs thin, and see how many people never book a second time.</div></div>
+<div class="phase"><div class="ph">Weeks 3 to 6 · Steady the promise</div><div class="pt">In one or two thin areas, stop over-offering instant slots, give honest arrival windows, and hold a backup pro for first visits.</div></div>
+<div class="phase"><div class="ph">Weeks 7 to 13 · Start the habit</div><div class="pt">Turn good first visits into weekly bookings in those areas, and watch whether steady demand lifts the share of bookings that get finished.</div></div>
 </div>
-<div class="metric"><span class="star">The one metric I'd stake the role on</span><br><b>First-booking completion rate</b> (booked → pro actually completed) in target pincodes — the single number that gates activation, retention, referral, and the "scam"-review problem at once. Secondary: first→second-booking cohort retention.</div></div>
+<div class="metric"><span class="star">The one number I would own</span><br><b>First-booking completion rate</b>, the share of first bookings that end with a pro actually finishing the job, in the areas we focus on. Get that right and activation, repeat bookings, word of mouth, and the refund problem all move with it.</div></div>
 
 <div class="grid">
-<div class="card"><h3>Voice of the detractor — "no refund" / support</h3><p class="cap">Prepaid + no human recovery = "scam" perception. Fix: capture-on-arrival, not remove prepay.</p><div id="qSup"></div></div>
-<div class="card"><h3>Voice of the promoter — what's working</h3><p class="cap">5★ reviews: the product IS loved when the pro shows up.</p><div id="qPos"></div></div>
+<div class="card"><h3>When the money is gone and no one answers</h3><p class="cap">Payment comes first, so a broken booking reads as a scam. The fix is to hold the money and take it only on arrival.</p><div id="qSup"></div></div>
+<div class="card"><h3>What happy customers say</h3><p class="cap">Five-star reviews. The work is loved when it actually happens.</p><div id="qPos"></div></div>
 </div>
 
-<div class="card full"><h3>Feature requests &amp; concrete asks surfaced from reviews</h3>
-<p class="cap">Verbatim asks extracted during classification — a free backlog.</p>
+<div class="card full"><h3>What people are asking for</h3>
+<p class="cap">Real requests, taken straight from the reviews. A ready-made backlog.</p>
 <ul class="feat" id="feat"></ul></div>
 
 <div class="method" id="method"></div>
-<div class="foot"><img src="__LOGO__" alt="Pronto"/>Independent growth teardown · built with Claude Code · not an official Pronto document.</div>
+<div class="foot"><img src="__LOGO__" alt="Pronto"/>Independent growth teardown. Not an official Pronto document.</div>
 </div>
 
 <script>
@@ -225,17 +224,14 @@ Chart.defaults.font.family = "'Inter',-apple-system,Segoe UI,Roboto,Arial,sans-s
 Chart.defaults.font.size = 12;
 
 document.getElementById('thesis').innerHTML =
- `<b>Thesis (v2):</b> Pronto's growth ceiling isn't acquisition — it's <b>supply liquidity</b> (a qualified pro actually available in your pincode &amp; slot). No-shows are the symptom. `+
- `<b>${D.reliability_share.pronto}%</b> of Pronto's negative reviews are no-shows/cancellations vs <b>${D.reliability_share.uc}%</b> for Urban Company — same market, opposite failure mode. `+
- `Prepaid turns each failure into a "scam" review. The cure isn't a demand-side patch; it's a <b>subscription flywheel</b> that turns unpredictable demand into forecastable demand you can pre-staff — making reliability a consequence, not a hope.`;
-
-document.getElementById('delta').innerHTML =
- `<b>What changed v1 → v2.</b> v1 called the problem "first-booking reliability." After pressure-testing the thesis against five marketplace operators' frameworks, I rebuilt it: reliability is a <b>symptom</b>; the disease is <b>supply liquidity</b>. v2 also adds what this data can't see + what I'd instrument day one, a root-cause split, and promotes the subscription flywheel to the strategy. Showing the iteration is the point — that's how I'd work inside the team.`;
+ `<b>The short version.</b> When a cleaner shows up, people love Pronto. You can read it in the reviews. The trouble starts earlier, with a quieter question: is a pro actually free in this neighbourhood, at this hour? `+
+ `<b>${D.reliability_share.pronto}%</b> of Pronto's unhappy reviews are about a no-show or cancellation, against <b>${D.reliability_share.uc}%</b> for Urban Company in the same cities. Because the customer has already paid, a broken booking does not feel like bad luck. It feels like being cheated, and the word "scam" follows. `+
+ `The fix is not a campaign. It is a habit. Turn a good first visit into a standing weekly booking, and let that steady demand keep supply dense enough that a pro is simply there.`;
 
 document.getElementById('honesty').innerHTML =
  `<img class="wm" src="__LOGOW__" alt=""/>`+
- `<h3>What this data can NOT see — and what I'd pull on day one</h3>`+
- `<p class="cap">App-store reviews are the loudest 15%, with no denominator and no cohorts. I'd form hypotheses here, then validate against instrumentation. The chart on the right proves the point: ${D.liq.unclear_pct}% of the harshest reviews state no root cause at all.</p>`+
+ `<h3>What the reviews can and cannot tell me, and where I would look next</h3>`+
+ `<p class="cap">Reviews are written by the angriest and the happiest customers, never the quiet middle. There is no denominator here, and no way to see the person who simply never booked again. So I treat them as a place to find the right questions, not the answers. The chart on the right makes the point: ${D.liq.unclear_pct}% of the harshest reviews give no cause at all.</p>`+
  `<table>`+
  `<tr><td>Was the failure "no pro existed" or "a pro flaked"? (different fixes)</td><td>Event split: requested → assigned → checked-in → completed, per pincode/slot</td></tr>`+
  `<tr><td>How bad is the <i>silent</i> churn? (non-rebookers leave no review)</td><td>First→second-booking cohort retention, weekly</td></tr>`+
@@ -246,11 +242,11 @@ document.getElementById('honesty').innerHTML =
 
 const k = D.kpis;
 const kpis = [
- ['Reviews mined', k.total_scraped.toLocaleString(), ''],
+ ['Reviews read', k.total_scraped.toLocaleString(), ''],
  ['Pronto reviews', k.pronto_reviews.toLocaleString(), ''],
- ['Avg rating', k.pronto_avg+'★', 'good'],
- ['1★ reviews', k.one_star.toLocaleString()+' ('+k.one_star_pct+'%)', 'alert'],
- ['Classified sample', k.sample, ''],
+ ['Average rating', k.pronto_avg+'★', 'good'],
+ ['One-star reviews', k.one_star.toLocaleString()+' ('+k.one_star_pct+'%)', 'alert'],
+ ['Hand-read sample', k.sample, ''],
 ];
 document.getElementById('kpis').innerHTML = kpis.map(x=>
  `<div class="kpi ${x[2]}"><div class="n">${x[1]}</div><div class="l">${x[0]}</div></div>`).join('');
@@ -284,32 +280,31 @@ document.getElementById('feat').innerHTML=D.features.map(f=>`<li>${f}</li>`).joi
 
 document.getElementById('flow').innerHTML =
  `<img class="wm" src="__LOGOW__" alt=""/>`+
- `<h3>The cure: a subscription flywheel that manufactures its own liquidity</h3>`+
+ `<h3>The fix is a habit, not a campaign</h3>`+
  `<div class="flowrow">`+
- `<span class="node">Great first visit</span><span class="arrow">→</span>`+
- `<span class="node hot">Same-pro recurring subscription</span><span class="arrow">→</span>`+
- `<span class="node">Forecastable demand</span><span class="arrow">→</span>`+
- `<span class="node">Pre-positioned supply</span><span class="arrow">→</span>`+
- `<span class="node">Density you can plan</span><span class="arrow">→</span>`+
- `<span class="node">Reliability worth referring</span>`+
+ `<span class="node">A great first visit</span><span class="arrow">→</span>`+
+ `<span class="node hot">Same cleaner, every week</span><span class="arrow">→</span>`+
+ `<span class="node">Demand you can predict</span><span class="arrow">→</span>`+
+ `<span class="node">Supply you can pre-plan</span><span class="arrow">→</span>`+
+ `<span class="node">A pro who shows up</span><span class="arrow">→</span>`+
+ `<span class="node">Worth recommending</span>`+
  `</div>`+
- `<p class="cap" style="color:#9ab3a6;margin-top:14px">Subscription isn't a retention afterthought — it's the engine input. A book of recurring cleans is a demand forecast, and a forecast is what lets ops guarantee a pro is there. It's also the moat: you can't moat on supply count (cleaners are interchangeable), so you moat by cornering the high-frequency buyer and owning "reliable" as a brand before UC's instant-help product does.</p>`;
+ `<p class="cap" style="color:#9ab3a6;margin-top:14px">A standing weekly booking is not just a loyal customer. It is a forecast, and a forecast is the one thing that lets operations promise a pro will be there. It is also the only real moat. Anyone can hire the same cleaners, Urban Company included. What is hard to copy is owning a household's weekly slot and the cleaner they have come to trust.</p>`;
 
 const exps=[
- ['flag','Primary bet','E1 · Subscription flywheel — same-pro recurring after a great first visit','Turns unpredictable demand into a forecast ops can staff against, lifting density & reliability for everyone in that pincode. This is the loop; the rest are enablers.'],
- ['core','Liquidity','E2 · Supply-density-aware booking','Only surface instant slots where available pro-hours cover the pincode×slot; else an honest scheduled slot or waitlist. The cheapest reliability gain is refusing to promise liquidity you don\'t have.'],
- ['enab','Enabler','E3 · Guaranteed first visit via supply over-provisioning','Pre-commit a backup pro on first bookings; if it still fails, auto-refund + apology credit before the customer asks. A supply mechanism, not just a refund policy.'],
- ['enab','Enabler','E4 · Fix prepaid without killing it — authorize & capture on arrival','Don\'t remove prepay (it gates fraud, no-shows, working capital). Authorize at booking, capture when the pro checks in. Kills the "they took my money and ghosted" review without re-opening the fraud hole.'],
- ['enab','Hygiene','E5 · Honest ETA + one-tap human','Replace the fake "2 minutes away" loop and the self-closing AI chat. Lowest leverage, fastest to ship; honesty cuts rage-cancels even when ops are slow.'],
+ ['flag','The engine','Make the first visit a standing booking','After a good first clean, one tap keeps the same person every week. Recurring bookings turn unpredictable demand into a forecast operations can plan around, which lifts reliability for everyone nearby. Everything else just protects this.'],
+ ['core','Liquidity','Stop promising what you cannot staff','Only offer an instant slot where pros are genuinely free nearby. Everywhere else, offer an honest later time. Refusing a promise you cannot keep is the cheapest reliability you can buy.'],
+ ['enab','First impression','Protect the first booking','Hold a backup pro in reserve for first visits. If it still falls through, refund and apologise before the customer has to ask.'],
+ ['enab','Payments','Fix the payment without removing it','Paying up front keeps fraud and no-shows down, so keep it. Just hold the money and take it only when the cleaner checks in. The "they took my money and vanished" review goes away.'],
+ ['enab','Honesty','Be honest about timing','Replace the fake "two minutes away" with a real arrival window and a person to call. Honesty calms people even when the news is slow.'],
 ];
 document.getElementById('exps').innerHTML = exps.map(e=>
  `<div class="exp"><span class="badge ${e[0]}">${e[1]}</span><div class="body"><b>${e[2]}</b><br>${e[3]}</div></div>`).join('');
 
 document.getElementById('method').innerHTML =
- `<b>Method &amp; honesty note (v2).</b> ${k.total_scraped.toLocaleString()} public reviews scraped (Google Play + Apple RSS) for Pronto and Urban Company. `+
- `Rating distribution &amp; volume use the full Pronto set (${k.pronto_reviews.toLocaleString()}). Theme/stage breakdowns use a stratified, hand-classified sample of ${k.sample}. `+
- `The root-cause split is a keyword attribution over ${D.liq.n_negative} of the harshest reviews — directional, and deliberately shows that ${D.liq.unclear_pct}% are unattributable from reviews alone (the case for event instrumentation). `+
- `Reviewers skew to extremes — treat all of this as signal to test, not population truth. Built independently with Claude Code; the Pronto name and logo are used for identification only.`;
+ `<b>How this was made.</b> ${k.total_scraped.toLocaleString()} public reviews were read across Pronto and Urban Company, from Google Play and the App Store in India. `+
+ `The rating counts use every Pronto review with text (${k.pronto_reviews.toLocaleString()}). The theme and root-cause breakdowns use a hand-read sample of ${k.sample}, so every claim can be traced back to a real review. `+
+ `Reviews come from the angriest and the happiest customers, never the quiet middle, so I treat all of this as a place to find questions worth testing against real product data, not as the final word. The Pronto name and logo are used only to say who this is about.`;
 </script>
 </body></html>"""
 
@@ -317,4 +312,4 @@ html = (HTML.replace("__DATA__", json.dumps(D)).replace("__GEN__", D["generated"
         .replace("__PRN__", f"{D['kpis']['pronto_reviews']:,}")
         .replace("__LOGOW__", LOGO_WHITE).replace("__LOGO__", LOGO).replace("__ICON__", ICON))
 (ROOT / "dashboard.html").write_text(html)
-print("Wrote dashboard.html (Pronto-branded v2), size", len(html))
+print("Wrote dashboard.html (Pronto-branded), size", len(html))

@@ -1,9 +1,7 @@
-# Pronto Growth Teardown — v2.0
+# Pronto Growth Teardown
 ### The growth ceiling is supply liquidity. No-shows are the symptom. The subscription flywheel is the cure.
 
-*An independent teardown, built with Claude Code, then pressure-tested against five marketplace operators' frameworks and rebuilt. Not affiliated with Pronto. Every number traces to public app-store data; the pipeline is included. Findings are directional signals to test — not population truth.*
-
-> **What changed from v1 → v2.** v1 called the problem "first-booking reliability." After stress-testing the thesis against how marketplace people actually think, I rewrote it. Reliability is a *symptom*; the disease is **supply liquidity** (density of available pros per area per time-slot). I also (a) added what this data *cannot* see and what I'd instrument on day one, (b) split the failures into root-cause buckets, (c) promoted the subscription flywheel from a footnote to the strategy, and (d) fixed a naive take on prepaid. Showing the v1→v2 delta is the point: this is how I'd iterate inside the team.
+*An independent teardown, built with Claude Code and pressure-tested against marketplace operators' frameworks. Every number traces to public app-store data; the pipeline is included. Findings are directional signals to test — not population truth.*
 
 ---
 
@@ -92,10 +90,10 @@ Only surface instant slots where available pro-hours actually cover the pincode�
 ### Enablers — make the failures that remain humane, and protect supply economics
 
 **E3 · Guaranteed first visit via supply over-provisioning.** `RICE: Med-High`
-For first-ever bookings, pre-commit a backup pro (over-provision the way ride-share floods a surge zone); if it still fails, **auto-refund + apology credit before the customer asks.** *Reframe from v1:* this is a *supply* mechanism, not just a refund policy. *(Spend the CAC you'd have burned on ads on guaranteeing the first impression instead.)*
+For first-ever bookings, pre-commit a backup pro (over-provision the way ride-share floods a surge zone); if it still fails, **auto-refund + apology credit before the customer asks.** This is a *supply* mechanism, not just a refund policy. *(Spend the CAC you'd have burned on ads on guaranteeing the first impression instead.)*
 
 **E4 · Fix prepaid without killing it: authorize-and-capture-on-arrival.** `RICE: Med`
-*Corrected from v1.* Don't remove prepay — it gates fraud and supply-side no-shows and funds working capital. Instead **authorize at booking, capture only when the pro checks in.** *Hypothesis:* kills the "they took my money and ghosted" review without re-opening the fraud/no-show hole. *(Evidence: the "scam" cluster — but the fix is escrow, not removal.)*
+Don't remove prepay — it gates fraud and supply-side no-shows and funds working capital. Instead **authorize at booking, capture only when the pro checks in.** *Hypothesis:* kills the "they took my money and ghosted" review without re-opening the fraud/no-show hole. *(Evidence: the "scam" cluster — but the fix is escrow, not removal.)*
 
 **E5 · Honest ETA + one-tap human.** `RICE: Med · hygiene, ship first`
 Replace the fake "2 minutes away" loop with a real ETA and a reachable human (not a self-closing AI chat). Lowest-leverage but fastest to ship; honesty cuts rage-cancels even when ops are slow.
@@ -114,6 +112,6 @@ Replace the fake "2 minutes away" loop with a real ETA and a reachable human (no
 
 ## 8. Why I built this
 
-I want to do growth at Pronto, so I did a slice of the job instead of describing it — and then I did the *other* part of the job: I let the thesis get torn apart and rebuilt it (that's the v1→v2 you're reading). The liquidity diagnosis could still be wrong in ways your internal data would correct in a day. But forming a falsifiable thesis, naming what I can't see, and knowing the one metric I'd own — that's how I'd work on the team.
+I want to do growth at Pronto, so I did a slice of the job instead of describing it — formed a thesis from real data, stress-tested it against how marketplace operators think, and pressure-tested my own assumptions. The liquidity diagnosis could still be wrong in ways your internal data would correct in a day. But forming a falsifiable thesis, naming what I can't see, and knowing the one metric I'd own — that's how I'd work on the team.
 
 *Happy to walk through the dashboard live and pressure-test any of it.*

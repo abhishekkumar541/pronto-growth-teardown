@@ -72,7 +72,20 @@ ul.feat li{margin:4px 0;break-inside:avoid}
 .metric b{color:#fff}.metric .star{color:#7fe0ab;font-weight:700;text-transform:uppercase;letter-spacing:.4px;font-size:11px}
 .foot{text-align:center;color:var(--mut);font-size:12px;margin-top:30px}
 .foot img{height:18px;vertical-align:middle;opacity:.6;margin-right:6px}
-@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.plan{grid-template-columns:1fr}header h1{font-size:26px}}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;margin-top:6px}
+.presets{display:flex;gap:8px;margin:0 0 16px;flex-wrap:wrap}
+.preset{font-size:12px;font-weight:600;border:1px solid var(--softL);background:var(--soft);color:var(--brandD);border-radius:20px;padding:6px 13px;cursor:pointer;user-select:none}
+.preset.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.ctrl{margin:0 0 15px}
+.ctrl label{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink);font-weight:600;margin-bottom:6px}
+.ctrl label .val{color:var(--brandD);font-family:'Poppins';font-weight:700}
+input[type=range]{width:100%;accent-color:var(--brand);height:4px;margin:2px 0}
+.outs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:6px}
+.out{border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.out .on{font-family:'Poppins';font-weight:800;font-size:19px;color:var(--ink);letter-spacing:-.02em}
+.out .ol{font-size:10.5px;color:var(--mut);margin-top:3px;line-height:1.3}
+.out.hl{background:var(--soft);border-color:var(--softL)}.out.hl .on{color:var(--brandD)}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.plan{grid-template-columns:1fr}.calc{grid-template-columns:1fr}header h1{font-size:26px}}
 </style></head>
 <body><div class="wrap">
 <div class="topbar">
@@ -109,6 +122,35 @@ ul.feat li{margin:4px 0;break-inside:avoid}
 <div class="card full"><h3>Five moves, in order of leverage</h3>
 <p class="cap">Everything here serves one thing: making sure a pro is actually there. The first move is the engine. The rest protect it.</p>
 <div id="exps"></div></div>
+
+<div class="card full"><h3>The other half of the marketplace: keeping pros busy and nearby</h3>
+<p class="cap">A no-show is usually a supply problem wearing a demand costume. Three things steady it.</p>
+<div class="move"><div class="mi">A</div><div class="mb"><b>Make supply plannable.</b> A weekly subscription is not just revenue. It tells operations exactly where a pro needs to be next Tuesday, which is how you keep enough cleaners free in the areas that matter. Predictable demand is the cheapest way to fix reliability.</div></div>
+<div class="move"><div class="mi">B</div><div class="mb"><b>Let your best pros recruit and coach.</b> The cleaners who already do great work are your cheapest, most trusted source of new ones. Give top pros a simple way to refer and mentor newcomers, and pay them for it. Supply grows from the inside, and quality travels with it.</div></div>
+<div class="move"><div class="mi">C</div><div class="mb"><b>Grow by density, not by map.</b> Win one area at a time. A neighbourhood where supply is thick feels instant and reliable. The same number of pros spread thin across a city feels broken everywhere.</div></div></div>
+
+<div class="card full"><h3>Growth model: what moving one number does</h3>
+<p class="cap">A simple projection over twelve months. Drag the first slider, the share of first bookings that actually get completed, and watch everything downstream move. It assumes a steady stream of new first-time bookings each month.</p>
+<div class="presets" id="presets">
+  <span class="preset" data-p="today">Where Pronto is today</span>
+  <span class="preset" data-p="fix">Fix the first booking</span>
+  <span class="preset" data-p="flywheel">Full flywheel</span>
+</div>
+<div class="calc">
+ <div>
+  <div class="ctrl"><label>First bookings that get completed <span class="val" id="vC1"></span></label><input type="range" id="c1" min="40" max="95" step="1"></div>
+  <div class="ctrl"><label>Completed first visits that book again <span class="val" id="vR2"></span></label><input type="range" id="r2" min="20" max="70" step="1"></div>
+  <div class="ctrl"><label>Repeat customers who go weekly <span class="val" id="vSub"></span></label><input type="range" id="sub" min="5" max="60" step="1"></div>
+  <div class="outs">
+    <div class="out hl"><div class="on" id="oActive"></div><div class="ol">active customers by month 12</div></div>
+    <div class="out"><div class="on" id="oSub"></div><div class="ol">of them on a weekly plan</div></div>
+    <div class="out"><div class="on" id="oRev"></div><div class="ol">monthly revenue by month 12</div></div>
+    <div class="out"><div class="on" id="oLift"></div><div class="ol">vs where Pronto is today</div></div>
+  </div>
+ </div>
+ <div><canvas id="growthChart" style="max-height:300px"></canvas></div>
+</div>
+<p class="cap" style="margin-top:14px">The first slider is the one that matters. A bigger acquisition campaign adds to the top. Making sure the pro shows up multiplies everything below it.</p></div>
 
 <div class="card full"><h3>The first ninety days</h3>
 <p class="cap">How I would sequence this, and the one number I would own.</p>
@@ -215,6 +257,53 @@ const exps=[
 ];
 document.getElementById('exps').innerHTML = exps.map(e=>
  `<div class="exp"><span class="badge ${e[0]}">${e[1]}</span><div class="body"><b>${e[2]}</b><br>${e[3]}</div></div>`).join('');
+
+// ---- Growth-model calculator (tied to first-booking completion rate) ----
+const FIX = {leads:10000, churnSub:0.04, churnCasual:0.12, price:400, bkSub:4, bkCasual:1.5};
+function project(c1, r2, sub){
+  let s=0, c=0; const act=[];
+  for(let m=0;m<12;m++){
+    const completed = FIX.leads*c1, repeat = completed*r2;
+    s = s*(1-FIX.churnSub) + repeat*sub;
+    c = c*(1-FIX.churnCasual) + repeat*(1-sub);
+    act.push(Math.round(s+c));
+  }
+  const rev = s*FIX.bkSub*FIX.price + c*FIX.bkCasual*FIX.price;
+  return {act, sub:Math.round(s), active:Math.round(s+c), rev};
+}
+const PRESETS = {today:[65,40,15], fix:[90,40,15], flywheel:[90,55,45]};
+const baseline = project(0.65, 0.40, 0.15);
+function inr(v){ return v>=1e7 ? '₹'+(v/1e7).toFixed(1)+' Cr' : v>=1e5 ? '₹'+(v/1e5).toFixed(1)+' L' : '₹'+Math.round(v).toLocaleString('en-IN'); }
+const $ = id => document.getElementById(id);
+const c1El=$('c1'), r2El=$('r2'), subEl=$('sub');
+let gChart;
+function renderCalc(){
+  const c1=+c1El.value, r2=+r2El.value, sub=+subEl.value;
+  $('vC1').textContent=c1+'%'; $('vR2').textContent=r2+'%'; $('vSub').textContent=sub+'%';
+  const r = project(c1/100, r2/100, sub/100);
+  $('oActive').textContent = r.active.toLocaleString('en-IN');
+  $('oSub').textContent = r.sub.toLocaleString('en-IN');
+  $('oRev').textContent = inr(r.rev);
+  $('oLift').textContent = (r.active/baseline.active).toFixed(1)+'× today';
+  if(!gChart){
+    gChart = new Chart($('growthChart'),{type:'line',
+      data:{labels:[...Array(12)].map((_,i)=>'M'+(i+1)),datasets:[
+        {label:'This plan',data:r.act,borderColor:'#18A860',backgroundColor:'rgba(24,168,96,.10)',fill:true,tension:.3,pointRadius:0,borderWidth:2.5},
+        {label:'Where Pronto is today',data:baseline.act,borderColor:'#9aa7b3',borderDash:[5,4],fill:false,tension:.3,pointRadius:0,borderWidth:1.5}]},
+      options:{plugins:{legend:{position:'top',labels:{boxWidth:12,font:{size:11}}}},
+        scales:{y:{beginAtZero:true,ticks:{callback:v=>v>=1000?(v/1000)+'k':v}}}}});
+  } else { gChart.data.datasets[0].data=r.act; gChart.update(); }
+}
+function setPreset(name){
+  const [a,b,c]=PRESETS[name]; c1El.value=a; r2El.value=b; subEl.value=c;
+  document.querySelectorAll('.preset').forEach(x=>x.classList.toggle('active', x.dataset.p===name));
+  renderCalc();
+}
+[c1El,r2El,subEl].forEach(e=>e.addEventListener('input',()=>{
+  document.querySelectorAll('.preset').forEach(x=>x.classList.remove('active')); renderCalc();
+}));
+document.querySelectorAll('.preset').forEach(p=>p.addEventListener('click',()=>setPreset(p.dataset.p)));
+setPreset('today');
 
 document.getElementById('method').innerHTML =
  `<b>How this was made.</b> ${k.total_scraped.toLocaleString()} public reviews were read across Pronto and Urban Company, from Google Play and the App Store in India. `+

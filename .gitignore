@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.vercel/
+pronto-growth-teardown-site/
+outreach-kit.md
+*.pdf
+dashboard-preview.png
+data/sample.txt
+data/sample.json

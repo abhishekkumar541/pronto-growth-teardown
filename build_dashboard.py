@@ -208,7 +208,7 @@ input[type=range]{width:100%;accent-color:var(--brand);height:4px;margin:2px 0}
 </div>
 <header>
 <h1>The growth ceiling is <span class="g">supply liquidity</span>.</h1>
-<div class="sub">What 4,464 public reviews say about the one moment that decides whether Pronto keeps a customer: whether a cleaner is actually at the door, on time.</div>
+<div class="sub">What 4,464 public reviews say about the one moment that decides whether Pronto keeps a customer: whether a professional is actually at the door, on time.</div>
 </header>
 
 <div class="thesis" id="thesis"></div>
@@ -235,8 +235,8 @@ input[type=range]{width:100%;accent-color:var(--brand);height:4px;margin:2px 0}
 
 <div class="card full"><h3>The other half of the marketplace: keeping pros busy and nearby</h3>
 <p class="cap">A no-show is usually a supply problem wearing a demand costume. Three things steady it.</p>
-<div class="move"><div class="mi">A</div><div class="mb"><b>Make supply plannable.</b> A weekly subscription is not just revenue. It tells operations exactly where a pro needs to be next Tuesday, which is how you keep enough cleaners free in the areas that matter. Predictable demand is the cheapest way to fix reliability.</div></div>
-<div class="move"><div class="mi">B</div><div class="mb"><b>Let your best pros recruit and coach.</b> The cleaners who already do great work are your cheapest, most trusted source of new ones. Give top pros a simple way to refer and mentor newcomers, and pay them for it. Supply grows from the inside, and quality travels with it.</div></div>
+<div class="move"><div class="mi">A</div><div class="mb"><b>Make supply plannable.</b> A weekly subscription is not just revenue. It tells operations exactly where a pro needs to be next Tuesday, which is how you keep enough professionals free in the areas that matter. Predictable demand is the cheapest way to fix reliability.</div></div>
+<div class="move"><div class="mi">B</div><div class="mb"><b>Let your best pros recruit and coach.</b> The professionals who already do great work are your cheapest, most trusted source of new ones. Give top pros a simple way to refer and mentor newcomers, and pay them for it. Supply grows from the inside, and quality travels with it.</div></div>
 <div class="move"><div class="mi">C</div><div class="mb"><b>Grow by density, not by map.</b> Win one area at a time. A neighbourhood where supply is thick feels instant and reliable. The same number of pros spread thin across a city feels broken everywhere.</div></div></div>
 
 <div class="card full"><h3>Growth model: what moving one number does</h3>
@@ -310,7 +310,7 @@ Chart.defaults.font.family = "'Inter',-apple-system,Segoe UI,Roboto,Arial,sans-s
 Chart.defaults.font.size = 12;
 
 document.getElementById('thesis').innerHTML =
- `<b>The short version.</b> When a cleaner shows up, people love Pronto. You can read it in the reviews. The trouble starts earlier, with a quieter question: is a pro actually free in this neighbourhood, at this hour? `+
+ `<b>The short version.</b> When a professional shows up, people love Pronto. You can read it in the reviews. The trouble starts earlier, with a quieter question: is a pro actually free in this neighbourhood, at this hour? `+
  `<b>${D.reliability_share.pronto}%</b> of Pronto's unhappy reviews are about a no-show or cancellation, against <b>${D.reliability_share.uc}%</b> for Urban Company in the same cities. Because the customer has already paid, a broken booking does not feel like bad luck. It feels like being cheated, and the word "scam" follows. `+
  `The fix is not a campaign. It is a habit. Turn a good first visit into a standing weekly booking, and let that steady demand keep supply dense enough that a pro is simply there.`;
 
@@ -369,13 +369,13 @@ document.getElementById('flow').innerHTML =
  `<h3>The fix is a habit, not a campaign</h3>`+
  `<div class="flowrow">`+
  `<span class="node">A great first visit</span><span class="arrow">→</span>`+
- `<span class="node hot">Same cleaner, every week</span><span class="arrow">→</span>`+
+ `<span class="node hot">Same professional, every week</span><span class="arrow">→</span>`+
  `<span class="node">Demand you can predict</span><span class="arrow">→</span>`+
  `<span class="node">Supply you can pre-plan</span><span class="arrow">→</span>`+
  `<span class="node">A pro who shows up</span><span class="arrow">→</span>`+
  `<span class="node">Worth recommending</span>`+
  `</div>`+
- `<p class="cap" style="color:#9ab3a6;margin-top:14px">A standing weekly booking is not just a loyal customer. It is a forecast, and a forecast is the one thing that lets operations promise a pro will be there. It is also the only real moat. Anyone can hire the same cleaners, Urban Company included. What is hard to copy is owning a household's weekly slot and the cleaner they have come to trust.</p>`;
+ `<p class="cap" style="color:#9ab3a6;margin-top:14px">A standing weekly booking is not just a loyal customer. It is a forecast, and a forecast is the one thing that lets operations promise a pro will be there. It is also the only real moat. Anyone can hire the same professionals, Urban Company included. What is hard to copy is owning a household's weekly slot and the professional they have come to trust.</p>`;
 
 // ---- Evaluation logic: prize sized off the growth model, plotted + scored ----
 const DRV={A:"Don't over-promise", B:"Build supply", C:"Recover well"};
@@ -389,7 +389,7 @@ const EVAL=[
 ];
 const HMG=[
  {m:"Make the first visit a standing booking",
-  h:"Offering a one-tap 'same cleaner, every week' right after a great first visit will turn more first-timers into regulars and make their demand predictable enough to staff against.",
+  h:"Offering a one-tap 'same professional, every week' right after a great first visit will turn more first-timers into regulars and make their demand predictable enough to staff against.",
   s:"First-to-second booking rate, and the share of active customers on a weekly plan.",
   g:"Pro utilisation and how often standing bookings get cancelled. If pros get locked into routes they abandon, stop."},
  {m:"Stop promising what you cannot staff",
@@ -397,11 +397,11 @@ const HMG=[
   s:"First-booking completion rate in the test areas, and the no-show share of complaints.",
   g:"Instant-booking volume and conversion. If honest availability quietly kills demand, fix the messaging, not the honesty."},
  {m:"Capture payment only on arrival",
-  h:"Holding the payment and charging only when the cleaner checks in will remove the 'they took my money' anger and lift willingness to try again.",
+  h:"Holding the payment and charging only when the professional checks in will remove the 'they took my money' anger and lift willingness to try again.",
   s:"Rebooking rate after a wobble, and how often 'scam' or 'refund' shows up in new reviews.",
   g:"Fraud and chargeback rate, and pro no-shows. If removing upfront capture invites abuse, tighten it."},
  {m:"Let top pros recruit and coach",
-  h:"The cleaners who already do great work are the cheapest, most trusted source of new ones, so paying them to refer and mentor should grow supply where it is thin without dropping quality.",
+  h:"The professionals who already do great work are the cheapest, most trusted source of new ones, so paying them to refer and mentor should grow supply where it is thin without dropping quality.",
   s:"New pros sourced and activated through referrals, their early ratings, and supply density in target areas.",
   g:"New-pro quality and complaint rate. If mentored pros underperform, fix the coaching before scaling it."},
  {m:"Hold a backup pro for first visits",

@@ -179,7 +179,7 @@ COVER = f"""
     <h1>The growth ceiling is <span class="g">supply liquidity</span>.</h1>
     <div class="rule"></div>
     <p class="sub">What 4,464 reviews reveal about the one moment that decides whether
-      Pronto keeps a customer: whether a cleaner is actually at the door, on time.</p>
+      Pronto keeps a customer: whether a professional is actually at the door, on time.</p>
   </div>
   <div class="foot">Prepared independently from public app-store data. Not an official Pronto document.</div>
 </section>
@@ -198,7 +198,7 @@ P2 = f"""
     turned up in fifteen minutes on a morning the regular maid did not. That is most of the reviews,
     and it is the part most companies would kill for.</p>
   <p>So the question worth asking is not whether people want Pronto. They clearly do. The question
-    is quieter. Is a cleaner free in her neighbourhood, at her hour, on the day she needs one?
+    is quieter. Is a professional free in her neighbourhood, at her hour, on the day she needs one?
     When the answer is no, the booking breaks. And because the customer has already paid, a broken
     booking does not feel like bad luck. It feels like being cheated. That is how a simple staffing
     gap becomes the word "scam" in a one-star review.</p>
@@ -255,8 +255,8 @@ P4 = f"""
   {rh()}
   <div class="eyebrow">03 / The fix is a habit, not a campaign</div>
   <h2 class="sec-h" style="margin-top:8px">Make demand predictable</h2>
-  <p class="lead">You do not fix thin supply by asking more cleaners to sit idle and wait. You fix it
-    by making demand predictable. A customer who books the same cleaner every Tuesday is not only a
+  <p class="lead">You do not fix thin supply by asking more professionals to sit idle and wait. You fix it
+    by making demand predictable. A customer who books the same professional every Tuesday is not only a
     loyal customer. She is a forecast. And a forecast is the one thing that lets operations promise a
     pro will be there.</p>
   <p>So the plan is quiet and a little boring, which is usually a good sign. Earn a great first visit.
@@ -265,15 +265,15 @@ P4 = f"""
 
   <div class="flow">
     <span class="fnode">A great first visit</span><span class="farr">&rarr;</span>
-    <span class="fnode hot">Same cleaner, every week</span><span class="farr">&rarr;</span>
+    <span class="fnode hot">Same professional, every week</span><span class="farr">&rarr;</span>
     <span class="fnode">Demand you can predict</span><span class="farr">&rarr;</span>
     <span class="fnode">Supply you can pre-plan</span><span class="farr">&rarr;</span>
     <span class="fnode">A pro who shows up</span><span class="farr">&rarr;</span>
     <span class="fnode">Worth recommending</span>
   </div>
 
-  <div class="callout">This is also the only real moat. Anyone can hire the same cleaners, Urban
-    Company included. What is hard to copy is owning a household's weekly slot and the cleaner they
+  <div class="callout">This is also the only real moat. Anyone can hire the same professionals, Urban
+    Company included. What is hard to copy is owning a household's weekly slot and the professional they
     have come to trust.</div>
 
   <p>From here the work splits into a handful of concrete moves. Rather than rank them by gut, the
@@ -305,7 +305,7 @@ for _i, (_m, _d, _rev, _imp, _eff, _conf, _prio) in enumerate(EVAL, 1):
 
 HMG = [
     ("Make the first visit a standing booking",
-     "Offering a one-tap 'same cleaner, every week' right after a great first visit will turn more first-timers into regulars and make their demand predictable enough to staff against.",
+     "Offering a one-tap 'same professional, every week' right after a great first visit will turn more first-timers into regulars and make their demand predictable enough to staff against.",
      "First-to-second booking rate, and the share of active customers on a weekly plan.",
      "Pro utilisation and how often standing bookings get cancelled. If pros get locked into routes they abandon, stop."),
     ("Stop promising what you cannot staff",
@@ -313,11 +313,11 @@ HMG = [
      "First-booking completion rate in the test areas, and the no-show share of complaints.",
      "Instant-booking volume and conversion. If honest availability quietly kills demand, fix the messaging, not the honesty."),
     ("Capture payment only on arrival",
-     "Holding the payment and charging only when the cleaner checks in will remove the 'they took my money' anger and lift willingness to try again.",
+     "Holding the payment and charging only when the professional checks in will remove the 'they took my money' anger and lift willingness to try again.",
      "Rebooking rate after a wobble, and how often 'scam' or 'refund' shows up in new reviews.",
      "Fraud and chargeback rate, and pro no-shows. If removing upfront capture invites abuse, tighten it."),
     ("Let top pros recruit and coach",
-     "The cleaners who already do great work are the cheapest, most trusted source of new ones, so paying them to refer and mentor should grow supply where it is thin without dropping quality.",
+     "The professionals who already do great work are the cheapest, most trusted source of new ones, so paying them to refer and mentor should grow supply where it is thin without dropping quality.",
      "New pros sourced and activated through referrals, their early ratings, and supply density in target areas.",
      "New-pro quality and complaint rate. If mentored pros underperform, fix the coaching before scaling it."),
     ("Hold a backup pro for first visits",

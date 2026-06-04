@@ -91,6 +91,9 @@ HTML = r"""<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<!-- Vercel Web Analytics (privacy-first, no cookies). Records the ?v= tag so each recipient link is attributable. -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
 <style>
 :root{--brand:#18A860;--brandD:#0F8A4E;--ink:#0B1A12;--mut:#5d6f64;--line:#e3ece6;
 --soft:#E8F5EE;--softL:#cfe9d9;--uc:#64748b;--alert:#E5484D;--amb:#C9A227;--bg:#f6faf7;--card:#fff;--dark:#0B1A12}

@@ -129,6 +129,37 @@ strong{ color:var(--ink); font-weight:600; }
 
 .close{ font-size:11pt; color:var(--body); }
 .sign{ margin-top:14px; font-size:10pt; color:var(--mut); }
+
+/* EVALUATION: issue tree, 2x2 matrix, scoring table, tests */
+.ptree{ margin:4px 0 14px; }
+.proot{ background:var(--ink); color:#fff; border-radius:8px; padding:8px 12px; font-size:9.2pt; font-weight:600; text-align:center; margin-bottom:8px; }
+.pcols{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.pcol{ border:1px solid var(--line); border-radius:8px; padding:9px; }
+.pcol .pd{ font-size:8.6pt; font-weight:700; color:var(--greenD); margin-bottom:4px; }
+.pcol .pm{ font-size:8.4pt; color:var(--body); }
+.matrix{ position:relative; height:240px; border:1px solid var(--line); border-radius:10px; margin:6px 0 14px; background:#fbfdfc; }
+.matrix .mqh{ position:absolute; left:0; right:0; top:50%; border-top:1px dashed #cdddd3; }
+.matrix .mqv{ position:absolute; top:0; bottom:0; left:50%; border-left:1px dashed #cdddd3; }
+.matrix .mdot{ position:absolute; width:24px; height:24px; margin:-12px 0 0 -12px; border-radius:50%; color:#fff; font-family:'Poppins'; font-weight:700; font-size:11px; display:flex; align-items:center; justify-content:center; }
+.matrix .mlbl{ position:absolute; font-size:8pt; color:#aab6ae; font-weight:600; }
+.matrix .tl{ left:12px; top:10px; } .matrix .tr{ right:12px; top:10px; } .matrix .bl{ left:12px; bottom:26px; } .matrix .br{ right:12px; bottom:26px; }
+.matrix .myaxis{ position:absolute; left:8px; top:55%; transform:rotate(-90deg); transform-origin:left; font-size:8pt; color:var(--mut); white-space:nowrap; }
+.matrix .mxaxis{ position:absolute; bottom:6px; left:50%; transform:translateX(-50%); font-size:8pt; color:var(--mut); }
+.ptbl{ width:100%; border-collapse:collapse; font-size:8.8pt; }
+.ptbl th{ text-align:left; color:var(--mut); font-size:7.4pt; text-transform:uppercase; letter-spacing:.03em; padding:5px 6px; border-bottom:1px solid var(--line); }
+.ptbl td{ padding:6px; border-bottom:1px solid var(--line); vertical-align:middle; }
+.ptbl tr:last-child td{ border-bottom:none; }
+.pz{ font-family:'Poppins'; font-weight:700; color:var(--greenD); }
+.cb,.pb{ font-size:7.4pt; font-weight:700; padding:2px 7px; border-radius:20px; white-space:nowrap; }
+.cb-Data{ background:#E8F5EE; color:#0F7E47; } .cb-Inferred{ background:#fdf6e3; color:#9a7b1a; } .cb-Hypothesis{ background:#eef1f4; color:#647280; }
+.pb-Big-bet{ background:var(--ink); color:#fff; } .pb-Quick-win{ background:#E8F5EE; color:#0F7E47; } .pb-Later{ background:#eef1f4; color:#647280; }
+.tests{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.tcard{ border:1px solid var(--line); border-radius:10px; padding:11px; }
+.tcard h5{ margin:0 0 7px; font-size:9.3pt; font-family:'Poppins'; font-weight:700; color:var(--ink); }
+.tcard .tr{ display:flex; gap:7px; font-size:8.3pt; margin:4px 0; line-height:1.4; }
+.tcard .tr .k{ flex:0 0 48px; font-size:6.8pt; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:#9aa7a0; padding-top:2px; }
+.tcard .tr.s .k{ color:var(--greenD); } .tcard .tr.g .k{ color:#c0392b; }
+.tcard .tr .v{ flex:1; color:var(--body); }
 """
 
 # ---------------------------------------------------------------- content ----
@@ -136,7 +167,7 @@ def rh(label="The growth teardown"):
     return (f'<div class="rh"><img src="{LOGO}"/>'
             f'<span class="lbl">{label}</span></div>')
 
-def rf(page, total=5, note="Independent analysis"):
+def rf(page, total=7, note="Independent analysis"):
     return (f'<div class="rf"><span>{note}</span>'
             f'<span class="pg">{page:02d} / {total:02d}</span></div>')
 
@@ -245,20 +276,114 @@ P4 = f"""
     Company included. What is hard to copy is owning a household's weekly slot and the cleaner they
     have come to trust.</div>
 
-  <p style="margin:4px 0 2px"><strong>Five moves, in order of leverage:</strong></p>
-  <div class="move"><div class="mi">1</div><div class="mb"><b>Make the first visit a standing booking.</b> After a good first clean, one tap to keep the same person every week. This is the engine. Everything else just protects it.</div></div>
-  <div class="move"><div class="mi">2</div><div class="mb"><b>Stop promising what you cannot staff.</b> Only offer an instant slot where pros are genuinely free nearby. Everywhere else, offer an honest later time. Refusing a promise you cannot keep is the cheapest reliability you can buy.</div></div>
-  <div class="move"><div class="mi">3</div><div class="mb"><b>Protect the first impression.</b> Hold a backup pro for first bookings. If it still falls through, refund and apologise before the customer has to ask for it.</div></div>
-  <div class="move"><div class="mi">4</div><div class="mb"><b>Fix the payment, do not scrap it.</b> Paying up front keeps fraud and no-shows down, so keep it. Just hold the money and take it only when the cleaner checks in. The "they took my money and vanished" review disappears.</div></div>
-  <div class="move"><div class="mi">5</div><div class="mb"><b>Be honest about timing.</b> Swap the fake "two minutes away" for a real arrival window and a person to call. Honesty calms people even when the news is slow.</div></div>
+  <p>From here the work splits into a handful of concrete moves. Rather than rank them by gut, the
+    next page sizes each one against the model, plots it by effort and reward, and writes it as a
+    test with a clear way to tell whether it worked.</p>
   {rf(4)}
+</section>
+"""
+
+# ---- Evaluation data (prize sized off the same model as the calculator) ----
+DRV = {"A": "Don't over-promise", "B": "Build supply", "C": "Recover well"}
+CCOL = {"Data-backed": "#18A860", "Inferred": "#C9A227", "Hypothesis": "#94a3b8"}
+EVAL = [
+    ("Make the first visit a standing booking", "B", "₹60L", 10, 5, "Inferred", "Big bet"),
+    ("Stop promising what you cannot staff", "A", "₹34L", 6, 6, "Data-backed", "Big bet"),
+    ("Capture payment only on arrival", "C", "₹29L", 5, 4, "Data-backed", "Quick win"),
+    ("Let top pros recruit and coach", "B", "₹29L", 5, 6, "Hypothesis", "Later"),
+    ("Hold a backup pro for first visits", "C", "₹23L", 4, 5, "Data-backed", "Later"),
+    ("Honest arrival time and a human to call", "C", "₹11L", 3, 3, "Data-backed", "Quick win"),
+]
+_dots, _rows = "", ""
+for _i, (_m, _d, _rev, _imp, _eff, _conf, _prio) in enumerate(EVAL, 1):
+    _x, _y = _eff / 10 * 100, (1 - _imp / 11) * 100
+    _dots += f'<div class="mdot" style="left:{_x:.0f}%;top:{_y:.0f}%;background:{CCOL[_conf]}">{_i}</div>'
+    _cb = _conf.split("-")[0]
+    _rows += (f'<tr><td><b>{_i}.</b> {_m}</td><td>{_d} · {DRV[_d]}</td><td class="pz">{_rev}</td>'
+              f'<td>{_imp}</td><td>{_eff}</td><td><span class="cb cb-{_cb}">{_conf}</span></td>'
+              f'<td><span class="pb pb-{_prio.replace(" ", "-")}">{_prio}</span></td></tr>')
+
+HMG = [
+    ("Make the first visit a standing booking",
+     "Offering a one-tap 'same cleaner, every week' right after a great first visit will turn more first-timers into regulars and make their demand predictable enough to staff against.",
+     "First-to-second booking rate, and the share of active customers on a weekly plan.",
+     "Pro utilisation and how often standing bookings get cancelled. If pros get locked into routes they abandon, stop."),
+    ("Stop promising what you cannot staff",
+     "Only showing instant slots where a pro is genuinely free nearby will cut no-shows by more than it costs in lost instant bookings.",
+     "First-booking completion rate in the test areas, and the no-show share of complaints.",
+     "Instant-booking volume and conversion. If honest availability quietly kills demand, fix the messaging, not the honesty."),
+    ("Capture payment only on arrival",
+     "Holding the payment and charging only when the cleaner checks in will remove the 'they took my money' anger and lift willingness to try again.",
+     "Rebooking rate after a wobble, and how often 'scam' or 'refund' shows up in new reviews.",
+     "Fraud and chargeback rate, and pro no-shows. If removing upfront capture invites abuse, tighten it."),
+    ("Let top pros recruit and coach",
+     "The cleaners who already do great work are the cheapest, most trusted source of new ones, so paying them to refer and mentor should grow supply where it is thin without dropping quality.",
+     "New pros sourced and activated through referrals, their early ratings, and supply density in target areas.",
+     "New-pro quality and complaint rate. If mentored pros underperform, fix the coaching before scaling it."),
+    ("Hold a backup pro for first visits",
+     "Pre-committing a second pro for first-ever bookings, with an instant refund and apology if it still fails, will protect the first impression that decides everything.",
+     "Completion rate of first-ever bookings, and 30-day retention of customers whose first booking was recovered.",
+     "The cost of over-provisioning per saved booking. If it costs more than a customer is worth, narrow it to the densest areas."),
+    ("Honest arrival time and a human to call",
+     "Replacing the fake 'two minutes away' with a real arrival window and a reachable person will cut rage-cancellations even when operations are slow.",
+     "Cancellation rate during the wait, and support satisfaction.",
+     "Average handle time and support cost. Keep a human reachable without drowning the team."),
+]
+_tests = ""
+for _i, (_m, _h, _s, _g) in enumerate(HMG, 1):
+    _tests += (f'<div class="tcard"><h5>{_i}. {_m}</h5>'
+               f'<div class="tr"><span class="k">Believe</span><span class="v">{_h}</span></div>'
+               f'<div class="tr s"><span class="k">Success</span><span class="v">{_s}</span></div>'
+               f'<div class="tr g"><span class="k">Guardrail</span><span class="v">{_g}</span></div></div>')
+
+EVAL_A = f"""
+<section class="sheet">
+  {rh()}
+  <div class="eyebrow">04 / How I would prioritise</div>
+  <h2 class="sec-h" style="margin-top:8px">Sized, not guessed</h2>
+  <p class="lead">I scored every move on three things: the prize, meaning the extra monthly revenue it
+    unlocks by month 12 in the model; the effort to build and run it; and how strong the evidence
+    behind it is. The numbers are directional, and I would recalibrate them against Pronto's own data
+    in the first week.</p>
+  <div class="ptree">
+    <div class="proot">Goal: more first bookings that actually get completed, which then compounds through the flywheel</div>
+    <div class="pcols">
+      <div class="pcol"><div class="pd">A · Don't promise what you cannot fulfil</div><div class="pm">Stop offering instant slots where no pro is genuinely free.</div></div>
+      <div class="pcol"><div class="pd">B · Have enough supply where demand is</div><div class="pm">Standing weekly bookings make demand plannable. Top pros recruit and coach.</div></div>
+      <div class="pcol"><div class="pd">C · Recover gracefully when it fails</div><div class="pm">Capture on arrival, a backup pro, and an honest arrival time with a human to call.</div></div>
+    </div>
+  </div>
+  <div class="matrix">
+    <div class="myaxis">Prize: revenue at stake</div><div class="mxaxis">Effort to build and run</div>
+    <div class="mqh"></div><div class="mqv"></div>
+    <div class="mlbl tl">Do first</div><div class="mlbl tr">Bigger bets</div>
+    <div class="mlbl bl">Quick wins</div><div class="mlbl br">Later</div>
+    {_dots}
+  </div>
+  <table class="ptbl">
+    <tr><th>Move</th><th>Driver</th><th>Prize / mo</th><th>Impact</th><th>Effort</th><th>Evidence</th><th>Priority</th></tr>
+    {_rows}
+  </table>
+  {rf(5)}
+</section>
+"""
+
+EVAL_B = f"""
+<section class="sheet">
+  {rh()}
+  <div class="eyebrow">05 / Each move as a test</div>
+  <h2 class="sec-h" style="margin-top:8px">What I believe, and how I would know</h2>
+  <p class="lead">Every move written the way I would brief it: what I expect to happen, the number
+    that would prove it worked, and the guardrail that would tell me to stop before it does damage.</p>
+  <div class="tests">{_tests}</div>
+  {rf(6)}
 </section>
 """
 
 P5 = f"""
 <section class="sheet">
   {rh()}
-  <div class="eyebrow">04 / The first ninety days</div>
+  <div class="eyebrow">06 / The first ninety days</div>
   <h2 class="sec-h" style="margin-top:8px">Where I would start</h2>
   <div class="tl">
     <div class="tlc"><div class="tlh">Weeks 1 to 2 · Learn</div><div class="tlb">Build the booking-to-arrival funnel by area and hour. Find where supply runs thin. See how many people never come back after one try.</div></div>
@@ -277,14 +402,14 @@ P5 = f"""
     Some of it will be wrong in ways your own data would correct in a day, and I would genuinely like
     to know where. If any of it is useful, I would love to talk it through over a coffee or a call.</p>
   <p class="sign">Prepared from 4,464 public reviews of Pronto and Urban Company, {TODAY}.</p>
-  {rf(5, note="Independent analysis · not an official Pronto document")}
+  {rf(7, note="Independent analysis · not an official Pronto document")}
 </section>
 """
 
 HTML = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/>
 <title>Pronto · Growth Teardown</title>
 <style>{FONTS}
-{CSS}</style></head><body>{COVER}{P2}{P3}{P4}{P5}</body></html>"""
+{CSS}</style></head><body>{COVER}{P2}{P3}{P4}{EVAL_A}{EVAL_B}{P5}</body></html>"""
 
 
 def main():

@@ -85,7 +85,36 @@ input[type=range]{width:100%;accent-color:var(--brand);height:4px;margin:2px 0}
 .out .on{font-family:'Poppins';font-weight:800;font-size:19px;color:var(--ink);letter-spacing:-.02em}
 .out .ol{font-size:10.5px;color:var(--mut);margin-top:3px;line-height:1.3}
 .out.hl{background:var(--soft);border-color:var(--softL)}.out.hl .on{color:var(--brandD)}
-@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.plan{grid-template-columns:1fr}.calc{grid-template-columns:1fr}header h1{font-size:26px}}
+.tree{margin:8px 0 20px}
+.troot{background:var(--ink);color:#fff;border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:600;text-align:center;margin-bottom:10px}
+.tcols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tcol{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff}
+.tcol .td{font-size:11.5px;font-weight:700;color:var(--brandD);margin-bottom:6px}
+.tcol .tm{font-size:12px;color:var(--body)}
+.eval2col{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;margin-top:6px}
+.stbl{width:100%;border-collapse:collapse;font-size:12px}
+.stbl th{text-align:left;color:var(--mut);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.03em;padding:6px 7px;border-bottom:1px solid var(--line);cursor:pointer;user-select:none;white-space:nowrap}
+.stbl th:hover{color:var(--brandD)}
+.stbl td{padding:8px 7px;border-bottom:1px solid var(--line);vertical-align:middle}
+.stbl tr:last-child td{border-bottom:none}
+.stbl .mname{font-weight:600;color:var(--ink)}
+.pz{font-family:'Poppins';font-weight:700;color:var(--brandD)}
+.cbadge,.pbadge{font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.cbadge.cb-Data{background:var(--soft);color:var(--brandD)}
+.cbadge.cb-Inferred{background:#fdf6e3;color:#9a7b1a}
+.cbadge.cb-Hypothesis{background:#eef1f4;color:#647280}
+.pbadge.p-Do-first{background:var(--brand);color:#fff}
+.pbadge.p-Big-bet{background:var(--ink);color:#fff}
+.pbadge.p-Quick-win{background:var(--soft);color:var(--brandD)}
+.pbadge.p-Later{background:#eef1f4;color:#647280}
+.hmg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+.hcard{border:1px solid var(--line);border-radius:12px;padding:14px}
+.hcard h4{margin:0 0 9px;font-size:12.5px;color:var(--ink);font-family:'Poppins';font-weight:700}
+.hcard .hl{display:flex;gap:9px;font-size:11.3px;margin:5px 0;line-height:1.45}
+.hcard .hl .t{flex:0 0 58px;font-weight:700;color:var(--mut);text-transform:uppercase;font-size:9px;letter-spacing:.03em;padding-top:2px}
+.hcard .hl.s .t{color:var(--brandD)}.hcard .hl.g .t{color:var(--alert)}
+.hcard .hl .x{flex:1;color:var(--body)}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.plan{grid-template-columns:1fr}.calc{grid-template-columns:1fr}.eval2col{grid-template-columns:1fr}.tcols{grid-template-columns:1fr}.hmg{grid-template-columns:1fr}header h1{font-size:26px}}
 </style></head>
 <body><div class="wrap">
 <div class="topbar">
@@ -119,10 +148,6 @@ input[type=range]{width:100%;accent-color:var(--brand);height:4px;margin:2px 0}
 
 <div class="flow" id="flow"></div>
 
-<div class="card full"><h3>Five moves, in order of leverage</h3>
-<p class="cap">Everything here serves one thing: making sure a pro is actually there. The first move is the engine. The rest protect it.</p>
-<div id="exps"></div></div>
-
 <div class="card full"><h3>The other half of the marketplace: keeping pros busy and nearby</h3>
 <p class="cap">A no-show is usually a supply problem wearing a demand costume. Three things steady it.</p>
 <div class="move"><div class="mi">A</div><div class="mb"><b>Make supply plannable.</b> A weekly subscription is not just revenue. It tells operations exactly where a pro needs to be next Tuesday, which is how you keep enough cleaners free in the areas that matter. Predictable demand is the cheapest way to fix reliability.</div></div>
@@ -151,6 +176,25 @@ input[type=range]{width:100%;accent-color:var(--brand);height:4px;margin:2px 0}
  <div><canvas id="growthChart" style="max-height:300px"></canvas></div>
 </div>
 <p class="cap" style="margin-top:14px">The first slider is the one that matters. A bigger acquisition campaign adds to the top. Making sure the pro shows up multiplies everything below it.</p></div>
+
+<div class="card full"><h3>How I would prioritise, and how I would know I was right</h3>
+<p class="cap">I scored every move on three things: the prize, meaning the extra monthly revenue it unlocks by month 12, read straight off the model above; the effort to build and run it; and how strong the evidence behind it is. The numbers are directional, and I would recalibrate them against Pronto's own data in the first week.</p>
+<div class="tree">
+  <div class="troot">Goal: more first bookings that actually get completed, which then compounds through the flywheel</div>
+  <div class="tcols">
+    <div class="tcol"><div class="td">A · Don't promise what you cannot fulfil</div><div class="tm">Stop offering instant slots where no pro is genuinely free.</div></div>
+    <div class="tcol"><div class="td">B · Have enough supply where demand is</div><div class="tm">Standing weekly bookings make demand plannable. Top pros recruit and coach new ones.</div></div>
+    <div class="tcol"><div class="td">C · Recover gracefully when it still fails</div><div class="tm">Capture on arrival, a backup pro, and an honest arrival time with a human to call.</div></div>
+  </div>
+</div>
+<div class="eval2col">
+  <div><canvas id="prioChart" style="max-height:320px"></canvas><p class="cap" style="margin-top:8px;text-align:center">Bubble size shows how strong the evidence is. Top-left is do first. Top-right is a bigger bet.</p></div>
+  <div id="scoreTable"></div>
+</div></div>
+
+<div class="card full"><h3>For each move: what I believe, how I would know, and what would tell me to stop</h3>
+<p class="cap">Every move written as a test, with the number that would prove it worked and the guardrail that catches damage early.</p>
+<div id="hmg"></div></div>
 
 <div class="card full"><h3>The first ninety days</h3>
 <p class="cap">How I would sequence this, and the one number I would own.</p>
@@ -248,15 +292,73 @@ document.getElementById('flow').innerHTML =
  `</div>`+
  `<p class="cap" style="color:#9ab3a6;margin-top:14px">A standing weekly booking is not just a loyal customer. It is a forecast, and a forecast is the one thing that lets operations promise a pro will be there. It is also the only real moat. Anyone can hire the same cleaners, Urban Company included. What is hard to copy is owning a household's weekly slot and the cleaner they have come to trust.</p>`;
 
-const exps=[
- ['flag','The engine','Make the first visit a standing booking','After a good first clean, one tap keeps the same person every week. Recurring bookings turn unpredictable demand into a forecast operations can plan around, which lifts reliability for everyone nearby. Everything else just protects this.'],
- ['core','Liquidity','Stop promising what you cannot staff','Only offer an instant slot where pros are genuinely free nearby. Everywhere else, offer an honest later time. Refusing a promise you cannot keep is the cheapest reliability you can buy.'],
- ['enab','First impression','Protect the first booking','Hold a backup pro in reserve for first visits. If it still falls through, refund and apologise before the customer has to ask.'],
- ['enab','Payments','Fix the payment without removing it','Paying up front keeps fraud and no-shows down, so keep it. Just hold the money and take it only when the cleaner checks in. The "they took my money and vanished" review goes away.'],
- ['enab','Honesty','Be honest about timing','Replace the fake "two minutes away" with a real arrival window and a person to call. Honesty calms people even when the news is slow.'],
+// ---- Evaluation logic: prize sized off the growth model, plotted + scored ----
+const DRV={A:"Don't over-promise", B:"Build supply", C:"Recover well"};
+const EVAL=[
+ {m:"Make the first visit a standing booking",driver:"B",rev:"₹60L",revn:6020000,impact:10,effort:5,conf:"Inferred",cnum:6,prio:"Big bet"},
+ {m:"Stop promising what you cannot staff",driver:"A",rev:"₹34L",revn:3390000,impact:6,effort:6,conf:"Data-backed",cnum:8,prio:"Big bet"},
+ {m:"Capture payment only on arrival",driver:"C",rev:"₹29L",revn:2940000,impact:5,effort:4,conf:"Data-backed",cnum:8,prio:"Quick win"},
+ {m:"Let top pros recruit and coach",driver:"B",rev:"₹29L",revn:2940000,impact:5,effort:6,conf:"Hypothesis",cnum:4,prio:"Later"},
+ {m:"Hold a backup pro for first visits",driver:"C",rev:"₹23L",revn:2260000,impact:4,effort:5,conf:"Data-backed",cnum:8,prio:"Later"},
+ {m:"Honest arrival time and a human to call",driver:"C",rev:"₹11L",revn:1130000,impact:3,effort:3,conf:"Data-backed",cnum:8,prio:"Quick win"},
 ];
-document.getElementById('exps').innerHTML = exps.map(e=>
- `<div class="exp"><span class="badge ${e[0]}">${e[1]}</span><div class="body"><b>${e[2]}</b><br>${e[3]}</div></div>`).join('');
+const HMG=[
+ {m:"Make the first visit a standing booking",
+  h:"Offering a one-tap 'same cleaner, every week' right after a great first visit will turn more first-timers into regulars and make their demand predictable enough to staff against.",
+  s:"First-to-second booking rate, and the share of active customers on a weekly plan.",
+  g:"Pro utilisation and how often standing bookings get cancelled. If pros get locked into routes they abandon, stop."},
+ {m:"Stop promising what you cannot staff",
+  h:"Only showing instant slots where a pro is genuinely free nearby will cut no-shows by more than it costs in lost instant bookings.",
+  s:"First-booking completion rate in the test areas, and the no-show share of complaints.",
+  g:"Instant-booking volume and conversion. If honest availability quietly kills demand, fix the messaging, not the honesty."},
+ {m:"Capture payment only on arrival",
+  h:"Holding the payment and charging only when the cleaner checks in will remove the 'they took my money' anger and lift willingness to try again.",
+  s:"Rebooking rate after a wobble, and how often 'scam' or 'refund' shows up in new reviews.",
+  g:"Fraud and chargeback rate, and pro no-shows. If removing upfront capture invites abuse, tighten it."},
+ {m:"Let top pros recruit and coach",
+  h:"The cleaners who already do great work are the cheapest, most trusted source of new ones, so paying them to refer and mentor should grow supply where it is thin without dropping quality.",
+  s:"New pros sourced and activated through referrals, their early ratings, and supply density in target areas.",
+  g:"New-pro quality and complaint rate. If mentored pros underperform, fix the coaching before scaling it."},
+ {m:"Hold a backup pro for first visits",
+  h:"Pre-committing a second pro for first-ever bookings, with an instant refund and apology if it still fails, will protect the first impression that decides everything.",
+  s:"Completion rate of first-ever bookings, and 30-day retention of customers whose first booking was recovered.",
+  g:"The cost of over-provisioning per saved booking. If it costs more than a customer is worth, narrow it to the densest areas."},
+ {m:"Honest arrival time and a human to call",
+  h:"Replacing the fake 'two minutes away' with a real arrival window and a reachable person will cut rage-cancellations even when operations are slow.",
+  s:"Cancellation rate during the wait, and support satisfaction.",
+  g:"Average handle time and support cost. Keep a human reachable without drowning the team."},
+];
+const CCOL={Data:'#18A860', Inferred:'#C9A227', Hypothesis:'#94a3b8'};
+const ccls = c => c.split('-')[0];
+new Chart(document.getElementById('prioChart'),{type:'bubble',
+ data:{datasets:EVAL.map((e,i)=>({label:(i+1)+'. '+e.m,data:[{x:e.effort,y:e.impact,r:6+e.cnum}],
+   backgroundColor:CCOL[ccls(e.conf)]+'cc',borderColor:CCOL[ccls(e.conf)],borderWidth:1}))},
+ options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>{const e=EVAL[c.datasetIndex];return (c.datasetIndex+1)+'. '+e.m+'  ·  prize '+e.rev+'/mo';}}}},
+  scales:{x:{min:0,max:10,title:{display:true,text:'Effort to build and run',color:'#7c8b82'},ticks:{stepSize:5,callback:v=>v===0?'low':v===10?'high':''},grid:{color:c=>c.tick.value===5?'#c2d3c9':'#eef2ef'}},
+          y:{min:0,max:11,title:{display:true,text:'Prize: revenue at stake',color:'#7c8b82'},ticks:{stepSize:5,callback:v=>v===0?'low':v===10?'high':''},grid:{color:c=>c.tick.value===5?'#c2d3c9':'#eef2ef'}}}},
+ plugins:[{afterDatasetsDraw(ch){const cx=ch.ctx;ch.data.datasets.forEach((ds,di)=>{const p=ch.getDatasetMeta(di).data[0];if(!p)return;cx.save();cx.fillStyle='#fff';cx.font='700 11px Inter';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(String(di+1),p.x,p.y);cx.restore();});}}]});
+
+let sk='impact', sd=-1;
+const cols=[['m','Move'],['driver','Driver'],['revn','Prize / mo'],['impact','Impact'],['effort','Effort'],['conf','Evidence'],['prio','Priority']];
+function renderTable(){
+ const rows=EVAL.map((e,i)=>({...e,n:i+1}));
+ rows.sort((a,b)=>{const x=a[sk],y=b[sk];return (typeof x==='string'?x.localeCompare(y):x-y)*sd;});
+ const head='<tr>'+cols.map(c=>`<th data-k="${c[0]}">${c[1]}</th>`).join('')+'</tr>';
+ const body=rows.map(e=>`<tr>
+  <td><span class="mname">${e.n}. ${e.m}</span></td>
+  <td>${e.driver} · ${DRV[e.driver]}</td>
+  <td class="pz">${e.rev}</td><td>${e.impact}</td><td>${e.effort}</td>
+  <td><span class="cbadge cb-${ccls(e.conf)}">${e.conf}</span></td>
+  <td><span class="pbadge p-${e.prio.replace(/ /g,'-')}">${e.prio}</span></td></tr>`).join('');
+ document.getElementById('scoreTable').innerHTML=`<table class="stbl"><thead>${head}</thead><tbody>${body}</tbody></table>`;
+ document.querySelectorAll('.stbl th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;
+   if(sk===k)sd*=-1; else {sk=k; sd=(k==='m'||k==='driver'||k==='conf'||k==='prio')?1:-1;} renderTable();});
+}
+renderTable();
+document.getElementById('hmg').innerHTML=HMG.map((x,i)=>`<div class="hcard"><h4>${i+1}. ${x.m}</h4>
+ <div class="hl"><span class="t">Believe</span><span class="x">${x.h}</span></div>
+ <div class="hl s"><span class="t">Success</span><span class="x">${x.s}</span></div>
+ <div class="hl g"><span class="t">Guardrail</span><span class="x">${x.g}</span></div></div>`).join('');
 
 // ---- Growth-model calculator (tied to first-booking completion rate) ----
 const FIX = {leads:10000, churnSub:0.04, churnCasual:0.12, price:400, bkSub:4, bkCasual:1.5};

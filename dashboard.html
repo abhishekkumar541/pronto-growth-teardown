@@ -49,7 +49,15 @@ ul.feat li{margin:4px 0;break-inside:avoid}
 .exp .badge{flex:0 0 auto;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:3px 8px;border-radius:20px;margin-top:2px}
 .exp .badge.flag{background:var(--pr);color:#fff}.exp .badge.core{background:#0d1b2a;color:#fff}.exp .badge.enab{background:#eef1f4;color:#5a6b7b}
 .exp .body{font-size:13.5px}.exp .body b{color:#0d1b2a}
-@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}}
+.delta{background:#fffaf0;border:1px solid #f0e2c8;border-left:4px solid var(--amb);border-radius:10px;padding:12px 16px;margin:0 0 20px;font-size:12.5px;color:#5c5230}
+.delta b{color:#0d1b2a}
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:4px 0 14px}
+.phase{background:#f8fafb;border:1px solid var(--line);border-radius:10px;padding:14px}
+.phase .ph{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--pr)}
+.phase .pt{font-size:13.5px;color:#33424f;margin-top:6px}
+.metric{background:#0d1b2a;color:#eaf1f7;border-radius:10px;padding:14px 18px;font-size:13.5px}
+.metric b{color:#fff}.metric .star{color:var(--amb);font-weight:700;text-transform:uppercase;letter-spacing:.4px;font-size:11px}
+@media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.plan{grid-template-columns:1fr}}
 </style></head>
 <body><div class="wrap">
 <header>
@@ -59,6 +67,7 @@ ul.feat li{margin:4px 0;break-inside:avoid}
 </header>
 
 <div class="thesis" id="thesis"></div>
+<div class="delta" id="delta"></div>
 <div class="honesty" id="honesty"></div>
 <div class="kpis" id="kpis"></div>
 
@@ -84,6 +93,15 @@ ul.feat li{margin:4px 0;break-inside:avoid}
 <p class="cap">Everything serves liquidity. The flywheel is the strategy; the rest are enablers.</p>
 <div id="exps"></div></div>
 
+<div class="card full"><h3>Day 1 → 90 operating plan</h3>
+<p class="cap">How I'd sequence this in the role — and the one metric I'd stake it on.</p>
+<div class="plan">
+<div class="phase"><div class="ph">Day 1–14 · Instrument</div><div class="pt">Stop guessing from reviews. Build the <b>requested→assigned→checked-in→completed</b> funnel by pincode×slot, the supply-density heatmap, and first→second-booking cohort retention.</div></div>
+<div class="phase"><div class="ph">Day 15–45 · De-risk the promise</div><div class="pt">Ship <b>E2</b> (density-aware booking) + <b>E5</b> (honest ETA/human) in 1–2 thin pincodes; stand up <b>E3</b> over-provisioning for first bookings there.</div></div>
+<div class="phase"><div class="ph">Day 45–90 · Spin the flywheel</div><div class="pt">Launch <b>E1</b> (same-pro subscription) in the proven pincodes; A/B authorize-on-arrival (<b>E4</b>). Measure: does subscription density lift completion rate?</div></div>
+</div>
+<div class="metric"><span class="star">The one metric I'd stake the role on</span><br><b>First-booking completion rate</b> (booked → pro actually completed) in target pincodes — the single number that gates activation, retention, referral, and the "scam"-review problem at once. Secondary: first→second-booking cohort retention.</div></div>
+
 <div class="grid">
 <div class="card"><h3>Voice of the detractor — "no refund" / support</h3><p class="cap">Prepaid + no human recovery = "scam" perception. Fix: capture-on-arrival, not remove prepay.</p><div id="qSup"></div></div>
 <div class="card"><h3>Voice of the promoter — what's working</h3><p class="cap">5★ reviews: the product IS loved when the pro shows up.</p><div id="qPos"></div></div>
@@ -106,6 +124,9 @@ document.getElementById('thesis').innerHTML =
  `<b>Thesis (v2):</b> Pronto's growth ceiling isn't acquisition — it's <b>supply liquidity</b> (a qualified pro actually available in your pincode & slot). No-shows are the symptom. `+
  `<b>${D.reliability_share.pronto}%</b> of Pronto's negative reviews are no-shows/cancellations vs <b>${D.reliability_share.uc}%</b> for Urban Company — same market, opposite failure mode. `+
  `Prepaid turns each failure into a "scam" review. The cure isn't a demand-side patch; it's a <b>subscription flywheel</b> that turns unpredictable demand into forecastable demand you can pre-staff — making reliability a consequence, not a hope.`;
+
+document.getElementById('delta').innerHTML =
+ `<b>What changed v1 → v2.</b> v1 called the problem "first-booking reliability." After pressure-testing the thesis against five marketplace operators' frameworks, I rebuilt it: reliability is a <b>symptom</b>; the disease is <b>supply liquidity</b>. v2 also adds what this data can't see + what I'd instrument day one, a root-cause split, and promotes the subscription flywheel to the strategy. Showing the iteration is the point — that's how I'd work inside the team.`;
 
 document.getElementById('honesty').innerHTML =
  `<h3>What this data can NOT see — and what I'd pull on day one</h3>`+

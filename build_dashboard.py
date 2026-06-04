@@ -95,23 +95,39 @@ HTML = r"""<!DOCTYPE html>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <style>
-:root{--brand:#18A860;--brandD:#0F8A4E;--ink:#0B1A12;--mut:#5d6f64;--line:#e3ece6;
---soft:#E8F5EE;--softL:#cfe9d9;--uc:#64748b;--alert:#E5484D;--amb:#C9A227;--bg:#f6faf7;--card:#fff;--dark:#0B1A12}
+:root{--brand:#16A35C;--brandD:#0F8A4E;--ink:#0A1F17;--slate:#33433b;--mut:#6b7d72;--line:#e9efeb;
+--soft:#EAF7F0;--softL:#d2ead9;--uc:#64748b;--alert:#E5484D;--amb:#C9A227;--bg:#f5faf7;--card:#fff;--dark:#08160F;
+--sh-sm:0 1px 2px rgba(10,31,23,.05);--sh:0 1px 3px rgba(10,31,23,.05),0 12px 30px rgba(10,31,23,.06);--sh-lg:0 2px 8px rgba(10,31,23,.06),0 28px 64px rgba(10,31,23,.12);--radius:18px}
 *{box-sizing:border-box}
-body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px 64px}
-h1,h2,h3,.kpi .n,.big{font-family:'Poppins',sans-serif}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 0 8px;border-bottom:1px solid var(--line);margin-bottom:26px}
-.brandrow{display:flex;align-items:center;gap:12px}
-.brandrow img{height:30px}
-.brandrow .div{width:1px;height:24px;background:var(--line)}
-.brandrow .lbl{font-family:'Poppins';font-weight:600;font-size:15px;color:var(--ink)}
-.pill{background:var(--soft);color:var(--brandD);font-weight:700;font-size:11px;padding:5px 12px;border-radius:20px;letter-spacing:.3px}
-header h1{font-size:33px;line-height:1.12;margin:18px 0 8px;letter-spacing:-.6px;font-weight:800}
-header h1 .g{color:var(--brand)}
-header .sub{color:var(--mut);font-size:15px;max-width:760px}
-.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:24px 0}
-.kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;color:var(--slate);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px 80px}
+h1,h2,h3,.kpi .n,.big,.stat .n{font-family:'Poppins',sans-serif}
+#thesis,#growthModel{scroll-margin-top:84px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+.navin{max-width:1100px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between}
+.brandrow{display:flex;align-items:center;gap:11px}
+.brandrow img{height:26px}
+.brandrow .div{width:1px;height:20px;background:var(--line)}
+.brandrow .lbl{font-family:'Poppins';font-weight:600;font-size:14px;color:var(--ink)}
+.pill{display:inline-block;background:var(--soft);color:var(--brandD);font-weight:700;font-size:11px;padding:6px 13px;border-radius:30px;letter-spacing:.2px;box-shadow:var(--sh-sm)}
+.hero{position:relative;overflow:hidden;margin-bottom:30px;border-bottom:1px solid var(--line)}
+.hero .grad{position:absolute;left:-10%;right:-10%;top:-55%;height:150%;transform:skewY(-7deg);transform-origin:top left;
+  background:radial-gradient(60% 120% at 12% 12%,#BCEFD0 0%,rgba(188,239,208,0) 60%),radial-gradient(55% 130% at 88% 0%,#A9E8E2 0%,rgba(169,232,226,0) 55%),linear-gradient(118deg,#D8F6E6 0%,#CFF2EA 48%,#E2F7EE 100%)}
+.hero .grad:after{content:"";position:absolute;left:0;right:0;bottom:0;height:48%;background:linear-gradient(180deg,rgba(245,250,247,0),var(--bg))}
+.hero .inner{position:relative;max-width:1100px;margin:0 auto;padding:60px 24px 48px}
+.hero .eyebrow{display:inline-block;background:rgba(255,255,255,.78);color:var(--brandD);font-weight:700;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;padding:6px 12px;border-radius:30px;margin-bottom:18px;box-shadow:var(--sh-sm)}
+.hero h1{font-size:46px;line-height:1.04;letter-spacing:-.025em;font-weight:800;color:#06210f;margin:0 0 15px;max-width:14ch}
+.hero h1 .g{background:linear-gradient(92deg,#0d7a47,#0a3f28);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:16.5px;line-height:1.5;color:#1c402d;max-width:48ch}
+.hero .cta{margin-top:24px;display:flex;gap:11px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:14px;border-radius:30px;padding:11px 20px;cursor:pointer;text-decoration:none;border:1px solid transparent;transition:transform .12s ease,box-shadow .12s ease}
+.btn-primary{background:var(--ink);color:#fff;box-shadow:var(--sh)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:var(--sh-lg)}
+.btn-ghost{background:rgba(255,255,255,.75);color:var(--ink);border-color:#cfe3d6}
+.btn-ghost:hover{background:#fff}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:24px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px;box-shadow:var(--sh-sm)}
 .kpi .n{font-size:25px;font-weight:800;letter-spacing:-.5px}
 .kpi .l{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.4px;margin-top:3px;font-weight:600}
 .kpi.alert .n{color:var(--alert)} .kpi.good .n{color:var(--brand)}
@@ -127,8 +143,8 @@ header .sub{color:var(--mut);font-size:15px;max-width:760px}
 .honesty td{border-bottom:1px solid #1f3a2b;padding:8px 8px;vertical-align:top}
 .honesty td:first-child{color:#cfe0d7}.honesty td:last-child{color:#7fe0ab}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:18px}
-.card h3{margin:0 0 2px;font-size:16px;font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;margin-bottom:20px;box-shadow:var(--sh)}
+.card h3{margin:0 0 3px;font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
 .card .cap{color:var(--mut);font-size:12.5px;margin:0 0 14px}
 .full{grid-column:1/-1}
 canvas{max-height:300px}
@@ -162,8 +178,9 @@ ul.feat li{margin:4px 0;break-inside:avoid}
 .foot img{height:18px;vertical-align:middle;opacity:.6;margin-right:6px}
 .calc{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;margin-top:6px}
 .presets{display:flex;gap:8px;margin:0 0 16px;flex-wrap:wrap}
-.preset{font-size:12px;font-weight:600;border:1px solid var(--softL);background:var(--soft);color:var(--brandD);border-radius:20px;padding:6px 13px;cursor:pointer;user-select:none}
-.preset.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.preset{font-size:12px;font-weight:600;border:1px solid var(--line);background:#fff;color:var(--brandD);border-radius:30px;padding:7px 15px;cursor:pointer;user-select:none;box-shadow:var(--sh-sm);transition:transform .1s ease}
+.preset:hover{transform:translateY(-1px)}
+.preset.active{background:var(--brand);color:#fff;border-color:var(--brand);box-shadow:var(--sh)}
 .ctrl{margin:0 0 15px}
 .ctrl label{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink);font-weight:600;margin-bottom:6px}
 .ctrl label .val{color:var(--brandD);font-family:'Poppins';font-weight:700}
@@ -204,15 +221,20 @@ input[type=range]{width:100%;accent-color:var(--brand);height:4px;margin:2px 0}
 .hcard .hl .x{flex:1;color:var(--body)}
 @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.plan{grid-template-columns:1fr}.calc{grid-template-columns:1fr}.eval2col{grid-template-columns:1fr}.tcols{grid-template-columns:1fr}.hmg{grid-template-columns:1fr}header h1{font-size:26px}}
 </style></head>
-<body><div class="wrap">
-<div class="topbar">
-<div class="brandrow"><img src="__LOGO__" alt="Pronto"/><div class="div"></div><span class="lbl">Growth Teardown</span></div>
-<span class="pill">Independent analysis</span>
-</div>
-<header>
-<h1>The growth ceiling is <span class="g">supply liquidity</span>.</h1>
-<div class="sub">What 4,464 public reviews say about the one moment that decides whether Pronto keeps a customer: whether a professional is actually at the door, on time.</div>
-</header>
+<body>
+<div class="nav"><div class="navin">
+  <div class="brandrow"><img src="__LOGO__" alt="Pronto"/><div class="div"></div><span class="lbl">Growth Teardown</span></div>
+  <span class="pill">Independent analysis</span>
+</div></div>
+<section class="hero"><div class="grad"></div>
+  <div class="inner">
+    <div class="eyebrow">A note on where growth is won or lost</div>
+    <h1>The growth ceiling is <span class="g">supply liquidity</span>.</h1>
+    <p class="sub">What 4,464 public reviews say about the one moment that decides whether Pronto keeps a customer: whether a professional is actually at the door, on time.</p>
+    <div class="cta"><a class="btn btn-primary" href="#thesis">Read the teardown</a><a class="btn btn-ghost" href="#growthModel">See the growth model</a></div>
+  </div>
+</section>
+<div class="wrap">
 
 <div class="thesis" id="thesis"></div>
 <div class="honesty" id="honesty"></div>
@@ -242,7 +264,7 @@ input[type=range]{width:100%;accent-color:var(--brand);height:4px;margin:2px 0}
 <div class="move"><div class="mi">B</div><div class="mb"><b>Let your best pros recruit and coach.</b> The professionals who already do great work are your cheapest, most trusted source of new ones. Give top pros a simple way to refer and mentor newcomers, and pay them for it. Supply grows from the inside, and quality travels with it.</div></div>
 <div class="move"><div class="mi">C</div><div class="mb"><b>Grow by density, not by map.</b> Win one area at a time. A neighbourhood where supply is thick feels instant and reliable. The same number of pros spread thin across a city feels broken everywhere.</div></div></div>
 
-<div class="card full"><h3>Growth model: what moving one number does</h3>
+<div class="card full" id="growthModel"><h3>Growth model: what moving one number does</h3>
 <p class="cap">A simple projection over twelve months. Drag the first slider, the share of first bookings that actually get completed, and watch everything downstream move. It assumes a steady stream of new first-time bookings each month.</p>
 <div class="presets" id="presets">
   <span class="preset" data-p="today">Where Pronto is today</span>
